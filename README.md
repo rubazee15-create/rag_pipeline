@@ -20,6 +20,8 @@ By running entirely on local hardware, it ensures:
 - **LLM Model:** Llama3 (via Ollama)
 - **Execution Environment:** 100% local deployment to ensure data privacy and zero API costs.
 
+### 
+
 ### 🛠️ Step-by-Step Implementation
 
 #### Phase 1: Ingestion Pipeline (Pre-processing) 
