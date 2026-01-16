@@ -28,5 +28,8 @@ By running entirely on local hardware, it ensures:
 - **Vector Embedding:** Used sentence-transformer model that converted text passage into "384-dimensional vectors".
 - **Vector Storage:** Stored the vector embeddings in ChromaDB vector store using HNSW Cosine Similarity to ensure the most mathematically similar documents are found during retrieval phase (search).
 
-#### Phase 2: Retrieval Pipeline 
-- **Context Retrieval:** Extracts the top 3 (k=3) relevant chunks to the user's query. 
+#### Phase 2: Retrieval Pipeline (Retrieval & Generation) 
+- **Contextual Retrieval:** Performed a similarity search to extract the top 3 (k=3) most relevant text chunks from the local vector store.
+- **Prompt Engineering:** Employed 'SystemMessage' instructions to force the AI to act as a factual research assistant. The model is instructed in the prompt to say, *"I do not have enough information based on the documents provided."*, if the answer is not available in the source documents. This prevents the LLM from hallucinating.
+- **Deterministic Inference:** Set the temperature to 0 and a fixed seed (25) to ensure 100% reproducible and consistent outputs. 
+- **Local Execution:** Powered by Llama 3 running locally via Ollama, making sure the data remains on the host machine. 
