@@ -1,4 +1,13 @@
+# Environements
 venv/
-__pycahce__/
-*.__pycahce__db/
-docs/
+.env 
+
+# Python bytecode
+**/__pycache__/
+*.py[cod]
+
+# Databases (RAG Vector Stores)
+db/
+*.sqlite3
+
+
