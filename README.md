@@ -8,8 +8,8 @@ A modular, local-first Retrieval-Augmented Generation (RAG) system designed for 
 This pipeline is specifically built to process and retrieve factual information from wikipedia documents of 5 countries (USA, Russia, China, UK and Pakistan). 
 By running entirely on local hardware, it ensures:
 
-- **Dataprivacy:** The documents never leave the computer machine.
-- **Air-Gapped Performance:** Works 100% offline once all documents are loaded.
+- **Data Privacy:** The documents never leave the computer machine.
+- **Air-Gapped Performance:** Oprates 100% offline once all documents are loaded.
 - **Fact-based Retrieval:** Uses vector embeddings to find the exact technical context through semantic similarity, reducing model hallucinations.
 
 ### 🚀 Quick Features: 
@@ -20,7 +20,29 @@ By running entirely on local hardware, it ensures:
 - **LLM Model:** Llama3 (via Ollama)
 - **Execution Environment:** 100% local deployment to ensure data privacy and zero API costs.
 
-### 
+### 📊 System Workflow:
+
+%%{init: {'theme': 'base', 'themeVariables': { 'primaryColor': '#003366', 'primaryTextColor': '#fff', 'lineColor': '#003366'}}}%%
+flowchart TD
+    subgraph Data_Ingestion ["Phase 1: Ingestion Pipeline"]
+        A[Wikipedia API] -->|Download| B[(Raw Text Files)]
+        B -->|RecursiveSplitter| C[Text Chunks 800 chars]
+        C -->|Embedding Model| D[384-Dim Vectors]
+        D -->|Save| E[(ChromaDB)]
+    end
+
+    subgraph Intelligence_Retrieval ["Phase 2: Retrieval & Generation"]
+        F[User Query] -->|Semantic Search| G{Vector Similarity}
+        G -->|k=3| E
+        E -->|Relevant Context| H[Augmented Prompt]
+        H -->|System Message| I[Llama 3 via Ollama]
+        I -->|Deterministic Answer| J[Secure Response]
+    end
+
+    style Data_Ingestion fill:#f9f9f9,stroke:#333,stroke-width:2px
+    style Intelligence_Retrieval fill:#f4f7ff,stroke:#003366,stroke-width:2px
+    style E fill:#e1f5fe,stroke:#01579b
+    style I fill:#fff9c4,stroke:#fbc02d
 
 ### 🛠️ Step-by-Step Implementation
 
