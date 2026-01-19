@@ -90,6 +90,6 @@ flowchart TD
 
 #### Phase 2: Retrieval Pipeline (Retrieval & Generation) 
 - **Contextual Retrieval:** Performed a similarity search to extract the top 3 (k=3) most relevant text chunks from the local vector store.
-- **Context-Aware Prompt:** Employed 'SystemMessage' instructions to force the AI to act as a factual research assistant. The model is instructed in the prompt to say, *"I do not have enough information based on the documents provided."*, if the answer is not available in the source documents. This prevents the LLM from hallucinating.
+- **Context-Aware Prompt:** Constructed a dynamic prompt that combines the retrieved document chunks with the user's original query. This component uses a 'SystemMessage' to instruct the AI to act as a factual research assistant. The model is instructed in the prompt to say, *"I do not have enough information based on the documents provided."*, if the answer is not available in the source documents. This prevents the LLM from hallucinating.
 - **Deterministic Inference:** Set the temperature to 0 and a fixed seed (25) to ensure 100% reproducible and consistent outputs. 
 - **Secure Response Generation:** Powered by Llama 3 running locally via Ollama, making sure the data remains entirely on the host machine throughout the generation process. 
