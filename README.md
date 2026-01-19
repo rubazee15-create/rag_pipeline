@@ -93,3 +93,9 @@ flowchart TD
 - **Context-Aware Prompt:** Constructed a dynamic prompt that combines the retrieved document chunks with the user's original query. This component uses a 'SystemMessage' to instruct the AI to act as a factual research assistant. The model is instructed in the prompt to say, *"I do not have enough information based on the documents provided."*, if the answer is not available in the source documents. This prevents the LLM from hallucinating.
 - **Deterministic Inference:** Set the temperature to 0 and a fixed seed (25) to ensure 100% reproducible and consistent outputs. 
 - **Secure Response Generation:** Powered by Llama 3 running locally via Ollama, making sure the data remains entirely on the host machine throughout the generation process. 
+
+### ⚡ Execution Guide
+1. Install dependencies: `pip install -r requirements.txt`
+2. Ensure Ollama is running with: `ollama run llama3`
+3. Run ingestion: `python rag_ingestion_pipeline.py`
+4. Run retrieval: `python rag_retrieval_pipeline.py`
